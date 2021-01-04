@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/todo/todo.css') }}">
+    <title>Simple Todo</title>
+</head>
+<body>
+    <div class="container">
+        <div class="todo">
+            <section class="create">
+                <form action="{{ url_for('todo.create_todo') }}" method="post">
+                    <input type="text" name="new-todo" id="new-todo">
+                    <input type="submit" value="Add">
+                </form>
+            </section>
+            <section class="todo-list">
+                <form action="{{ url_for('todo.finish_todo') }}" method="post">
+                    <ul>
+                        <li><input type="checkbox" name="" id=""></li>
+                    </ul>
+                </form>
+            </section>
+            <!-- <section class="finish"></section> -->
+        </div>
+    </div>
+</body>
+</html>
