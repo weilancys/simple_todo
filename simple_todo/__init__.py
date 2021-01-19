@@ -1,6 +1,7 @@
 from flask import Flask, redirect, url_for
 from . import todo
 from . import db
+from .auth import login_manager
 
 
 def create_app():
@@ -17,5 +18,8 @@ def create_app():
 
     # database
     db.engine.init_app(app)
+
+    # login
+    # login_manager.init_app(app)
 
     return app

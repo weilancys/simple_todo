@@ -1,5 +1,5 @@
 from flask.blueprints import Blueprint
-from flask import render_template
+from flask import render_template, request
 
 bp = Blueprint("todo", __name__, url_prefix="/todo")
 
@@ -11,10 +11,9 @@ def index():
 
 @bp.route("/history")
 def history():
-    """
-    docstring
-    """
-    pass
+    page = request.args.get("page", 1)
+    return render_template("todo/history.html")
+
 
 
 @bp.route("/create", methods=["POST", ])
