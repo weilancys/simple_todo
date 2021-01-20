@@ -10,7 +10,9 @@
     </section>
     <section class="todo-list">
         <ul>
-            <li><label><input type="checkbox" name="" id="">read book</label></li>
+            {% for todo in todos %}
+                <li><label><input type="checkbox" name="" id="">{{ todo.text }}</label></li>
+            {% endfor %}
         </ul>
         <button>finish</button>
     </section>

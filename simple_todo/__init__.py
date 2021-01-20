@@ -2,13 +2,24 @@ from flask import Flask, redirect, url_for
 from . import todo
 from . import db
 from .auth import login_manager
+import os
 
 
-def create_app():
-    app = Flask(__name__)
+def create_app(test_config=None):
+    app = Flask(__name__, instance_relative_config=True)
+
+    # instance path
+    os.makedirs(app.instance_path, exist_ok=True)
 
     # config
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+    app.config['SECRET_KEY'] = "dev"
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(app.instance_path, "test.db") 
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    if test_config is None:
+        app.config.from_pyfile('config.py', silent=True)
+    else:
+        app.config.from_mapping(test_config)
 
     # blueprints
     app.register_blueprint(todo.bp)

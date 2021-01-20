@@ -1,12 +1,14 @@
 from flask.blueprints import Blueprint
-from flask import render_template, request
+from flask import render_template, request, abort, redirect, url_for
+from .db import engine, TodoItem
 
 bp = Blueprint("todo", __name__, url_prefix="/todo")
 
 
 @bp.route("/")
 def index():
-    return render_template("todo/index.html")
+    todos = TodoItem.query.all()
+    return render_template("todo/index.html", todos=todos)
 
 
 @bp.route("/history")
@@ -18,10 +20,19 @@ def history():
 
 @bp.route("/create", methods=["POST", ])
 def create_todo():
-    """
-    docstring
-    """
-    pass
+    new_todo_text = request.form.get("new-todo", None)
+    if new_todo_text is None or new_todo_text.strip() == "":
+        abort(400)
+    
+    new_todo = TodoItem(text=new_todo_text)
+
+    try:
+        engine.session.add(new_todo)
+        engine.session.commit()
+        return redirect(url_for("todo.index"))
+    except:
+        abort(400)
+
 
 
 @bp.route("/finish", methods=["POST", ])
