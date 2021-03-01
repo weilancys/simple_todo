@@ -1,5 +1,9 @@
 {% extends 'todo/base.html' %}
 
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/todo/todo.css') }}">
+{% endblock %}
+
 {% block page_content %}
 <div class="todo">
     <section class="create">
@@ -11,10 +15,17 @@
     <section class="todo-list">
         <ul>
             {% for todo in todos %}
-                <li><label><input type="checkbox" name="" id="">{{ todo.text }}</label></li>
+                <li>
+                    <input class="todo-item" type="checkbox" name="{{ todo.id }}" id="{{ todo.id }}" value="{{ todo.id }}">
+                    <label class="todo-item-text" for="{{ todo.id }}">{{ todo.text }}</label>
+                </li>
             {% endfor %}
         </ul>
-        <button>finish</button>
+        <button class="btn-finish">finish</button>
     </section>
 </div>
+{% endblock %}
+
+{% block js %}
+<script src="{{ url_for('static', filename='js/todo/index.js') }}"></script>
 {% endblock %}

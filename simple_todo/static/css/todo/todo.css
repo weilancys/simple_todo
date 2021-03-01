@@ -8,3 +8,11 @@
     width: 70%;
     margin: 0 auto;
 }
+
+.todo-item-selected {
+    text-decoration: line-through;
+}
+
+.todo-item:checked + label {
+    text-decoration: line-through;
+}

@@ -7,8 +7,8 @@ bp = Blueprint("todo", __name__, url_prefix="/todo")
 
 @bp.route("/")
 def index():
-    todos = TodoItem.query.all()
-    return render_template("todo/index.html", todos=todos)
+    fresh_todos = TodoItem.query.filter(TodoItem.is_finished==False).all()
+    return render_template("todo/index.html", todos=fresh_todos)
 
 
 @bp.route("/history")
