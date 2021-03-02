@@ -1,5 +1,36 @@
 {% extends 'todo/base.html' %}
 
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/todo/todo.css') }}">
+{% endblock %}
+
 {% block page_content %}
-<h2>history</h2>
+<div class="todo-history">
+    <table>
+        <thead>
+            <tr>
+                <th>todo</th>
+                <th>created at</th>
+                <th>finished at</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for todo in ctx.todos %}
+                <tr>
+                    <td>{{ todo.text }}</td>
+                    <td>{{ todo.created_at }}</td>
+                    <td>{{ todo.finished_at }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    {% if ctx.pagination.page_count > 1 %}
+        {% include 'todo/paginator.html' %}
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block js %}
+
 {% endblock %}

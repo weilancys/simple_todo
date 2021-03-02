@@ -10,8 +10,8 @@
     <nav>
         <h3>simple todo</h3>
         <ul>
-            <li>todo</li>
-            <li>history</li>
+            <li><a href="{{ url_for('todo.index') }}">todo</a></li>
+            <li><a href="{{ url_for('todo.history') }}">history</a></li>
         </ul>
         <div class="auth">
             {% if g.user %}

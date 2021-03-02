@@ -16,3 +16,7 @@
 .todo-item:checked + label {
     text-decoration: line-through;
 }
+
+.paginator a {
+    text-decoration: none;
+}

@@ -16,6 +16,8 @@ def create_app(test_config=None):
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(app.instance_path, "test.db") 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+    app.config['TODO_ITEMS_MAX_PER_PAGE'] = 20
+
     if test_config is None:
         app.config.from_pyfile('config.py', silent=True)
     else:

@@ -8,20 +8,22 @@
 <div class="todo">
     <section class="create">
         <form action="{{ url_for('todo.create_todo') }}" method="post">
-            <input type="text" name="new-todo" id="new-todo">
+            <input type="text" name="new-todo" id="new-todo" required>
             <input type="submit" value="Add">
         </form>
     </section>
     <section class="todo-list">
-        <ul>
-            {% for todo in todos %}
-                <li>
-                    <input class="todo-item" type="checkbox" name="{{ todo.id }}" id="{{ todo.id }}" value="{{ todo.id }}">
-                    <label class="todo-item-text" for="{{ todo.id }}">{{ todo.text }}</label>
-                </li>
-            {% endfor %}
-        </ul>
-        <button class="btn-finish">finish</button>
+        <form action="{{ url_for('todo.finish_todo') }}" method="post">
+            <ul>
+                {% for todo in todos %}
+                    <li>
+                        <input class="todo-item" type="checkbox" name="todo-item" id="{{ todo.id }}" value="{{ todo.id }}">
+                        <label class="todo-item-text" for="{{ todo.id }}">{{ todo.text }}</label>
+                    </li>
+                {% endfor %}
+            </ul>
+            <button class="btn-finish">finish</button>
+        </form>
     </section>
 </div>
 {% endblock %}
