@@ -7,13 +7,13 @@
 {% block page_content %}
 <div class="todo">
     <section class="create">
-        <form action="{{ url_for('todo.create_todo') }}" method="post">
+        <form class="new-todo-form" action="{{ url_for('todo.create_todo') }}" method="post">
             <input type="text" name="new-todo" id="new-todo" required>
             <input type="submit" value="Add">
         </form>
     </section>
     <section class="todo-list">
-        <form action="{{ url_for('todo.finish_todo') }}" method="post">
+        <form class="todo-list-form" action="{{ url_for('todo.finish_todo') }}" method="post">
             <ul>
                 {% for todo in todos %}
                     <li>
