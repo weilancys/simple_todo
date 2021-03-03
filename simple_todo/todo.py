@@ -1,5 +1,6 @@
 from flask.blueprints import Blueprint
 from flask import render_template, request, abort, redirect, url_for, current_app
+from flask_login import login_required
 from .db import engine, TodoItem
 import datetime
 import math
@@ -24,7 +25,6 @@ def history():
     page_count = math.ceil(finished_todos_count / current_app.config["TODO_ITEMS_MAX_PER_PAGE"])
     start_id = (page - 1) * current_app.config["TODO_ITEMS_MAX_PER_PAGE"] + 1
     end_id = start_id + current_app.config["TODO_ITEMS_MAX_PER_PAGE"]
-    print(start_id)
     finished_todos = TodoItem.query.filter_by(is_finished=True).order_by(TodoItem.finished_at.desc()).slice(start_id - 1, end_id - 1).all()
 
     ctx = {
@@ -36,7 +36,6 @@ def history():
             "page_count": page_count,
         }
     }
-    print(request.base_url)
     return render_template("todo/history.html", ctx=ctx)
 
 

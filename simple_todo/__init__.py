@@ -33,6 +33,6 @@ def create_app(test_config=None):
     db.engine.init_app(app)
 
     # login
-    # login_manager.init_app(app)
+    login_manager.init_app(app)
 
     return app
