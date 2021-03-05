@@ -21,8 +21,8 @@ class TodoItem(engine.Model):
 
 class User(UserMixin, engine.Model):
     id = engine.Column(engine.Integer, primary_key=True)
-    username = engine.Column(engine.String(200), nullable=False, unique=True)
-    email = engine.Column(engine.String(200), nullable=False, unique=True)
+    username = engine.Column(engine.String(100), nullable=False, unique=True)
+    email = engine.Column(engine.String(100), nullable=False, unique=True)
     password = engine.Column(engine.String(200), nullable=False)
     created_at = engine.Column(engine.DateTime, default=datetime.datetime.now)
 

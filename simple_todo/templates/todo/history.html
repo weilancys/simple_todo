@@ -1,4 +1,4 @@
-{% extends 'todo/base.html' %}
+{% extends 'base.html' %}
 
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/todo/todo.css') }}">
@@ -26,7 +26,7 @@
     </table>
     
     {% if ctx.pagination.page_count > 1 %}
-        {% include 'todo/paginator.html' %}
+        {% include 'snippets/paginator.html' %}
     {% endif %}
 </div>
 {% endblock %}

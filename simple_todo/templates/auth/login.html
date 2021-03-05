@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+<div class="login">
+    {% include 'snippets/flash_messages.html' %}
+    {% include 'snippets/form_errors.html' %}
+    <form action="{{ url_for('auth.login') }}" method="post">
+        {{ form.csrf_token }}
+        {{ form.email.label }} {{ form.email }}
+        {{ form.password.label }} {{ form.password }}
+        <label><input type="checkbox" name="remember_me">remember me</label>
+        <input type="submit" value="Login">
+    </form>
+</div>
+{% endblock %}

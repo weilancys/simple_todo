@@ -1,7 +1,7 @@
 from flask import Flask, redirect, url_for
 from . import todo
 from . import db
-from .auth import login_manager
+from .auth import login_manager, bp
 import os
 
 
@@ -25,6 +25,7 @@ def create_app(test_config=None):
 
     # blueprints
     app.register_blueprint(todo.bp)
+    app.register_blueprint(auth.bp)
     @app.route("/")
     def redirect_to_todo():
         return redirect(url_for("todo.index"))

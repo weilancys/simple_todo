@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+<div class="signup">
+    {% include 'snippets/flash_messages.html' %}
+    {% include 'snippets/form_errors.html' %}
+    <form action="{{ url_for('auth.signup') }}" method="post">
+        {{ form.csrf_token }}
+        {{ form.email.label }} {{ form.email }}
+        {{ form.username.label }} {{ form.username }}
+        {{ form.password.label }} {{ form.password }}
+        {{ form.password_retype.label }} {{ form.password_retype }}
+        <input type="submit" value="SignUp">
+    </form>
+</div>
+{% endblock %}
