@@ -27,17 +27,18 @@ def login():
 
         user = User.query.filter_by(email=email).first()
         if not user:
-            flash("bad login")
+            flash("bad login", "error")
             return render_template("auth/login.html", form=login_form)
         
         if not check_password_hash(user.password, password):
-            flash("bad login")
+            flash("bad login", "error")
             return render_template("auth/login.html", form=login_form)
         
         login_user(user, remember=remember_me)
-        next = request.args.get("next", None)
+        next = request.form.get("next", None)
         return redirect(next or url_for("todo.index"))
-    return render_template("auth/login.html", form=login_form)
+    next = request.args.get("next", None)
+    return render_template("auth/login.html", form=login_form, next=next)
 
 
 @bp.route("/signup", methods=("GET", "POST"))
@@ -51,7 +52,7 @@ def signup():
 
         user = User.query.filter_by(username=username, email=email).first()
         if user:
-            flash("user already exists.")
+            flash("user already exists.", "error")
             return render_template("auth/signup.html", form=signup_form)
         
         new_user = User(username=username, email=email, password=generate_password_hash(password))
@@ -75,7 +76,7 @@ def changepassword():
             abort(400)
 
         if not check_password_hash(user.password, old_password):
-            flash("old password incorrect.")
+            flash("old password incorrect.", "error")
             return render_template("auth/changepassword.html", form=change_password_form)
         
         user.password = generate_password_hash(new_password)

@@ -1,9 +1,7 @@
 {% if form.errors %}
-    <div class="form-errors">
-        {% for field, errors in form.errors.items() %}
-            {% for error in errors %}
-                <div class="form-error">{{ error }}</div>
-            {% endfor %}
+    {% for field, errors in form.errors.items() %}
+        {% for error in errors %}
+            <div class="notification is-danger is-light">{{ error }}</div>
         {% endfor %}
-    </div>
+    {% endfor %}
 {% endif %}

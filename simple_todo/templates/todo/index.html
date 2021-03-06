@@ -9,7 +9,7 @@
     <section class="create">
         <form class="new-todo-form" action="{{ url_for('todo.create_todo') }}" method="post">
             {{ new_todo_form.csrf_token }}
-            {{ new_todo_form.new_todo }}
+            {{ new_todo_form.new_todo(autofocus=true) }}
             <input type="submit" value="Add">
         </form>
     </section>
