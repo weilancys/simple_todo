@@ -8,18 +8,16 @@
     <title>simple todo</title>
 </head>
 <body>
-    <nav class="navbar is-dark">
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <p class="navbar-item">Simple Todo</p>
-            <!-- <h1 class="navbar-item title">simple todo</h1> -->
-            <!-- <a class="navbar-item" href="{{ url_for('todo.index') }}">simple todo</a> -->
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu">
+            <p class="navbar-item is-size-5">Simple Todo</p>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="main-navbar-menu">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
             </a>
         </div>
-        <div class="navbar-menu" id="navbar-menu">
+        <div class="navbar-menu" id="main-navbar-menu">
             <div class="navbar-start">
                 <a class="navbar-item" href="{{ url_for('todo.index') }}">Todo</a>               
                 <a class="navbar-item" href="{{ url_for('todo.history') }}">History</a>
@@ -41,5 +39,6 @@
         </div>
     </section>
     {% block js %}{% endblock %}
+    <script src="{{ url_for('static', filename='js/base/navbar.js') }}"></script>
 </body>
 </html>

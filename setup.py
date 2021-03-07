@@ -5,7 +5,7 @@ with open("README.md", encoding="utf-8") as f:
 
 setup(
     name = 'simple-todo',
-    version = "0.0.1",
+    version = "0.1.0",
     author="lbcoder",
     author_email="lbcoder@hotmail.com",
     description="A simple todo web app",
@@ -17,6 +17,9 @@ setup(
     install_requires = [
         "flask",
         "flask-sqlalchemy",
+        'flask-login',
+        'flask-wtf',
+        'email-validator',
     ],
     classifiers = [
         "Programming Language :: Python :: 3",

@@ -1,0 +1,5 @@
+recursive-include  simple_todo/static *
+recursive-include  simple_todo/templates *
+include config.py.example
+include LICENSE
+include README.md

@@ -5,28 +5,40 @@
 {% endblock %}
 
 {% block page_content %}
-<div class="todo">
-    <section class="create">
-        <form class="new-todo-form" action="{{ url_for('todo.create_todo') }}" method="post">
-            {{ new_todo_form.csrf_token }}
-            {{ new_todo_form.new_todo(autofocus=true) }}
-            <input type="submit" value="Add">
-        </form>
-    </section>
-    <section class="todo-list">
-        <form class="todo-list-form" action="{{ url_for('todo.finish_todo') }}" method="post">
-            {{ todo_list_form.csrf_token }}
-            <ul>
-                {% for todo in todos %}
-                    <li>
-                        <input class="todo-item" type="checkbox" name="todo-item" id="{{ todo.id }}" value="{{ todo.id }}">
-                        <label class="todo-item-text" for="{{ todo.id }}">{{ todo.text }}</label>
-                    </li>
-                {% endfor %}
-            </ul>
-            <button class="btn-finish">finish</button>
-        </form>
-    </section>
+<div class="columns">
+    <div class="column is-8 is-offset-2 todo">
+        <section class="create">
+            <form class="new-todo-form" action="{{ url_for('todo.create_todo') }}" method="post">
+                {{ new_todo_form.csrf_token }}
+                <div class="field has-addons">
+                    <div class="control is-expanded">
+                        {{ new_todo_form.new_todo(class='input', autofocus=true) }}
+                    </div>
+                    <div class="control">
+                        <input class="button is-dark" type="submit" value="Add">
+                    </div>
+                </div>
+            </form>
+        </section>
+        <section class="todo-list" style="margin-top: 1.5em;">
+            <form class="todo-list-form" action="{{ url_for('todo.finish_todo') }}" method="post">
+                {{ todo_list_form.csrf_token }}
+                <nav class="panel">
+                    {% for todo in todos %}
+                        <div class="control">
+                            <input class="todo-item" type="checkbox" name="todo-item" id="{{ todo.id }}" value="{{ todo.id }}">
+                            <label class="checkbox todo-item-text is-size-5" for="{{ todo.id }}">{{ todo.text }}</label>
+                        </div>
+                    {% else %}
+                        <p class="is-size-5">no todo items, you can add one now</p>
+                    {% endfor %}
+                </nav>
+                <div class="block has-text-centered">
+                    <button class="button is-success" class="btn-finish">Finish</button>
+                </div>
+            </form>
+        </section>
+    </div>
 </div>
 {% endblock %}
 

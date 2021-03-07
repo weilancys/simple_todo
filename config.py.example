@@ -1,0 +1,10 @@
+# rename this file to config.py
+# put the file in instance folder so the config can take place
+
+import os
+
+SECRET_KEY = os.urandom(64)
+SQLALCHEMY_DATABASE_URI = "mysql://user:pass@localhost/database"
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+TODO_ITEMS_MAX_PER_PAGE = 20
