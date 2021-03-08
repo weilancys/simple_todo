@@ -20,6 +20,7 @@ setup(
         'flask-login',
         'flask-wtf',
         'email-validator',
+        'mysqlclient',
     ],
     classifiers = [
         "Programming Language :: Python :: 3",
