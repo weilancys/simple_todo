@@ -3,3 +3,4 @@ recursive-include  simple_todo/templates *
 include config.py.example
 include LICENSE
 include README.md
+include simple_todo.wsgi
